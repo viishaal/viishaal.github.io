@@ -5,5 +5,105 @@ date:   2016-07-02 23:15:45 -0400
 categories: jekyll update
 ---
 
-This study was done as a part of a course I took last semester at Columbia University ![homeless_complaints](/images/festival_dots.png)
+To perform the below analysis I used NYC 311 complaints data from which I extracted years worth of homeless complaints. The 311 complaints data is made freely available here: [NYC 311 data][data_source]. The whole dataset is pretty huge so extract the right columns before doing further analysis.
+
+I was interested in knowing how homeless complaints vary with days, months, seasons etc. So firstly I grouped homeless complaints by months in year 2015:
+
+{% highlight ruby %}
+require(leaflet)
+require(plotly)
+require(dplyr)
+require(ggplot2)
+
+df = read.csv("311_Service_Requests_from_2010_to_Present-3.csv", strip.white=TRUE)
+#df_manhattan = df[grep("manhattan", df$Borough, ignore.case = TRUE),]   # if you want to restrict analysis to manhattan
+dfh = df[grep("homeless", df$Complaint.Type, ignore.case = TRUE), ]
+
+dfh$year = as.numeric(format(as.Date(dfh$Created.Date, format= "%m/%d/%Y"), "%Y"))
+dfh$month = as.numeric(format(as.Date(dfh$Created.Date, format= "%m/%d/%Y"), "%m"))
+
+dfh2015 = dfh[dfh$year=="2015",]
+monthwise = dfh2015 %>%
+            group_by(month) %>%
+            summarise(total=n())
+
+g3 = ggplot(data=monthwise) + geom_bar(aes(x=reorder(month_name, month), y=total), stat="identity", fill="blue", alpha=0.5)
+g3 = g3 + labs(title="Monthwise Complaints for 2015", x="Month", y="Complaints")
+g3
+
+{% endhighlight %}
+
+ ![homeless_complaints_monthwise_2015](/images/monthwise-2015.png)
+
+Interesting what's happening in December. So let's drill down:
+
+{% highlight ruby %}
+
+g3 = ggplot(data=day_wise[352:365, ]) + geom_bar(aes(x=date, y=total), stat="identity", fill="blue", alpha=0.5)
+g3 = g3 + labs(title="December Homeless Complaints - 2015", x="Day", y="Complaints")
+g3
+
+{% endhighlight %}
+
+![homeless_complaints_december](/images/december.png)
+
+Uh oh! One might expect the number of complaints to rise around Christmas time but there's actually a dip there. Maybe no one cares to complaint that day or not many are actually asking for alms.
+
+And lets generally plot complaints grouped by days for the whole year of 2015:
+
+{% highlight ruby %}
+
+dfh2015$date = as.Date(dfh2015$Created.Date, format= "%m/%d/%Y")
+day_wise = dfh2015 %>%
+            group_by(date) %>%
+            summarise(total=n())
+
+g3 = ggplot(data=day_wise) + geom_bar(aes(x=date, y=total), stat="identity", fill="blue", alpha=0.5)
+g3 = g3 + labs(title="Daywise Complaints for 2015", x="Day", y="Complaints")
+g3
+
+day_wise[which.max(day_wise$total),]
+
+{% endhighlight %}
+
+![homeless_complaints_daywise](/images/daywise.png)
+
+Does the December 25 pattern repeat for other holidays? I superimposed the holidays with `Red` dots on the above daywise graph:
+
+{% highlight ruby %}
+
+threshold=0.6
+win_length = 3
+MAX = 999999
+vals = c()
+idx = c()
+for (i in 1:nrow(day_wise)) {
+  val = day_wise$total[i]
+  
+  if (i > 3 && i < 363 && 
+      any( (val - day_wise$total[(i-win_length):(i-1)])/day_wise$total[(i-win_length):(i-1)] > threshold &
+            (val - day_wise$total[(i+1):(i+win_length+1)])/day_wise$total[(i+1):(i+win_length+1)] > threshold ) ) {
+    vals = c(vals,day_wise$date[i])
+    idx = c(idx, i)
+  }
+}
+class(vals) = "Date"
+
+fest_2015 = c(1,19,47,145,185,250,285,315,330,359)
+
+g3 = ggplot(data=day_wise) + geom_bar(aes(x=date, y=total), stat="identity", fill="grey", alpha=0.8)
+g3 = g3 + geom_point(data=day_wise[fest_2015,], aes(date, total), stat="identity", colour="red", size=3,alpha=0.8)
+g3 = g3 + geom_bar(data=day_wise[idx,], aes(date, total), stat="identity", fill="blue")
+g3 = g3 + labs(title="Red dot holidays 2015", x="Day", y="No. of Complaints")
+g3
+
+{% endhighlight %}
+
+![homeless_complaints](/images/festival_dots.png)
+
+The yellow peaks are some sort of a local maximum. These are the days/points in the year when within both +3 days and -3 days window we find days when the homeless complaints drop to 60% of the number of complaints that were observed on that particular day.
+
+Interesting insight that a local maxima usually occurs `around` the festival date and generally not on that particular date.
+
+[data_source]: https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9
 
