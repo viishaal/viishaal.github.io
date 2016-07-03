@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Need to give some name to blog</title>
+    <description>A blog about random Data Science experiments
+</description>
+    <link>http://viishaal.github.io/</link>
+    <atom:link href="http://viishaal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 03 Jul 2016 03:12:46 -0400</pubDate>
+    <lastBuildDate>Sun, 03 Jul 2016 03:12:46 -0400</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>NYC homeless complaints analysis</title>
+        <description>&lt;p&gt;This study was done as a part of a course I took last semester at Columbia University &lt;img src=&quot;/images/festival_dots.png&quot; alt=&quot;homeless_complaints&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 02 Jul 2016 23:15:45 -0400</pubDate>
+        <link>http://viishaal.github.io/jekyll/update/2016/07/02/NYC-311-homeless.html</link>
+        <guid isPermaLink="true">http://viishaal.github.io/jekyll/update/2016/07/02/NYC-311-homeless.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+  </channel>
+</rss>

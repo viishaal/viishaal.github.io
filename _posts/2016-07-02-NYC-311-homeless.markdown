@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "NYC homeless complaints analysis"
+date:   2016-07-02 23:15:45 -0400
+categories: jekyll update
+---
+
+This study was done as a part of a course I took last semester at Columbia University ![homeless_complaints](/images/festival_dots.png)
+
