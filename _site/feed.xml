@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Datum Dweller</title>
-    <description>Trying to find the answers to life universe and everything in datum
+    <description>Trying to find the answers to life universe and everything in datum.
 </description>
     <link>http://viishaal.github.io/</link>
     <atom:link href="http://viishaal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 03 Jul 2016 16:48:57 -0400</pubDate>
-    <lastBuildDate>Sun, 03 Jul 2016 16:48:57 -0400</lastBuildDate>
+    <pubDate>Tue, 05 Jul 2016 02:26:45 -0400</pubDate>
+    <lastBuildDate>Tue, 05 Jul 2016 02:26:45 -0400</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -64,7 +64,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/daywise.png&quot; alt=&quot;homeless_complaints_daywise&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Does the December 25 pattern repeat for other holidays? I superimposed the holidays with &lt;code class=&quot;highlighter-rouge&quot;&gt;Red&lt;/code&gt; dots on the above daywise graph:&lt;/p&gt;
+&lt;p&gt;Does the December 25 pattern repeat for other holidays? I superimposed the &lt;a href=&quot;https://www.newyorkfed.org/aboutthefed/holiday_schedule.html&quot;&gt;holidays&lt;/a&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;Red&lt;/code&gt; dots on the above daywise graph:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;threshold&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;win_length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
@@ -95,7 +95,7 @@
 
 &lt;p&gt;The yellow peaks are some sort of a local maximum. These are the days/points in the year when within both +3 days and -3 days window we find days when the homeless complaints drop to 60% of the number of complaints that were observed on that particular day.&lt;/p&gt;
 
-&lt;p&gt;Interesting insight that a local maxima usually occurs &lt;code class=&quot;highlighter-rouge&quot;&gt;around&lt;/code&gt; the festival date and generally not on that particular date.&lt;/p&gt;
+&lt;p&gt;Interesting insight that a local maxima usually occurs &lt;code class=&quot;highlighter-rouge&quot;&gt;around&lt;/code&gt; the holiday/festival date and generally not on that particular day.&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 02 Jul 2016 23:15:45 -0400</pubDate>

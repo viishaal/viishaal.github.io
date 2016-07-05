@@ -68,7 +68,7 @@ day_wise[which.max(day_wise$total),]
 
 ![homeless_complaints_daywise](/images/daywise.png)
 
-Does the December 25 pattern repeat for other holidays? I superimposed the holidays with `Red` dots on the above daywise graph:
+Does the December 25 pattern repeat for other holidays? I superimposed the [holidays][holiday_source] with `Red` dots on the above daywise graph:
 
 {% highlight ruby %}
 
@@ -103,7 +103,8 @@ g3
 
 The yellow peaks are some sort of a local maximum. These are the days/points in the year when within both +3 days and -3 days window we find days when the homeless complaints drop to 60% of the number of complaints that were observed on that particular day.
 
-Interesting insight that a local maxima usually occurs `around` the festival date and generally not on that particular date.
+Interesting insight that a local maxima usually occurs `around` the holiday/festival date and generally not on that particular day.
 
 [data_source]: https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9
+[holiday_source]: https://www.newyorkfed.org/aboutthefed/holiday_schedule.html
 
