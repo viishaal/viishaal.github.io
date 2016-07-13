@@ -6,8 +6,8 @@
 </description>
     <link>http://viishaal.github.io/</link>
     <atom:link href="http://viishaal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 05 Jul 2016 02:26:45 -0400</pubDate>
-    <lastBuildDate>Tue, 05 Jul 2016 02:26:45 -0400</lastBuildDate>
+    <pubDate>Wed, 13 Jul 2016 01:30:56 -0400</pubDate>
+    <lastBuildDate>Wed, 13 Jul 2016 01:30:56 -0400</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -93,7 +93,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/festival_dots.png&quot; alt=&quot;homeless_complaints&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The yellow peaks are some sort of a local maximum. These are the days/points in the year when within both +3 days and -3 days window we find days when the homeless complaints drop to 60% of the number of complaints that were observed on that particular day.&lt;/p&gt;
+&lt;p&gt;The blue peaks are some sort of a local maximum. These are the days/points in the year when within both +3 days and -3 days window we find days when the homeless complaints drop to 60% of the number of complaints that were observed on that particular day.&lt;/p&gt;
 
 &lt;p&gt;Interesting insight that a local maxima usually occurs &lt;code class=&quot;highlighter-rouge&quot;&gt;around&lt;/code&gt; the holiday/festival date and generally not on that particular day.&lt;/p&gt;
 
