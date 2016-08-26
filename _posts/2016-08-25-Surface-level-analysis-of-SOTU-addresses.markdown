@@ -5,10 +5,10 @@ date: 2016-08-24 23:15:45 -0400
 categories: jekyll update
 ---
 
-Disclaimer: In this post I am comparing SOTU addresses with speeches of Hitler, Gandhi and the recently elected Canadian president Justin Trudeau. This is a surface level textual analysis and I am not drawing any personality based comparisons in this post.
+Disclaimer: In this post I am comparing State of the Union (SOTU) addresses with speeches of Hitler, Gandhi and the recently elected Canadian president Justin Trudeau. This is a surface level textual analysis and I am not drawing any personality based comparisons in this post.
 
 
-This exploratory analysis compares State of the Union (SOTU) addresses given by presidents over the years with speeches of other famous/in-famous personalities. Although the overall idea of this and future analysis is to draw comparisons in both speech content and styles; the current analysis is restricted to term frequency based cosine similarity measures. A deeper content analysis will probably require parsing, identifying topics/policies etc. Associating sentiment with those topics could be a dummy/indicator for policy standpoints. Speech style comparisons will require analysis of speech signals and prosody data.
+This exploratory analysis compares SOTU addresses given by presidents over the years with speeches of other famous/in-famous personalities. Although the overall idea of this and future analysis is to draw comparisons in both speech content and styles; the current analysis is restricted to term frequency based cosine similarity measures. A deeper content analysis will probably require parsing, identifying topics/policies etc. Associating sentiment with those topics could be a dummy/indicator for policy standpoints. Speech style comparisons will require analysis of speech signals and prosody data.
 
 We will do the following:
 
