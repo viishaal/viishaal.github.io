@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SOTU address comparions
+title: Detecting speech similarities
 date: 2016-08-24 23:15:45 -0400
 categories: jekyll update
 ---
