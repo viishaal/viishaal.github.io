@@ -172,6 +172,6 @@ compare_speeches("jt", "Justin Trudeau")
 PS: Please contact me if anyone is interested in taking this analysis further!!
 
 
-[data]: /data/SOTU
-[code]: /code/topics.R
+[data]: https://github.com/viishaal/viishaal.github.io/tree/master/data/SOTU
+[code]: https://github.com/viishaal/viishaal.github.io/blob/master/code/topics.R
 
