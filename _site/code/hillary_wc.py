@@ -1,6 +1,8 @@
 import pandas as pd
 import sqlite3
 
+
+# read data
 con = sqlite3.connect('../data/input/database.sqlite')
 e = pd.read_sql_query("Select ExtractedBodyText From Emails where ExtractedBodyText like '%India%' limit 30",con)
 
@@ -10,6 +12,8 @@ for i in range(len(e.ExtractedBodyText)):
 
 print cs
 
+
+# generate wordcloud
 from wordcloud import WordCloud
 from wordcloud import STOPWORDS
 from os import path
@@ -35,7 +39,7 @@ plt.axis("off")
 #plt.savefig('../images/wc.png')
 
 
-# combine with image of India dramatic effects
+# combine images for cool dramatic effects (Woooooo)
 images = map(Image.open, ['india.jpg', '../images/wc.png'])
 
 images[0] = images[0].resize((980,1080), Image.ANTIALIAS)
