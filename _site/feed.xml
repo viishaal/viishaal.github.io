@@ -6,9 +6,31 @@
 </description>
     <link>http://viishaal.github.io/</link>
     <atom:link href="http://viishaal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 28 Aug 2016 11:06:09 -0700</pubDate>
-    <lastBuildDate>Sun, 28 Aug 2016 11:06:09 -0700</lastBuildDate>
+    <pubDate>Tue, 06 Sep 2016 15:12:00 -0700</pubDate>
+    <lastBuildDate>Tue, 06 Sep 2016 15:12:00 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Clinton emails and India - Part 1</title>
+        <description>&lt;p&gt;This is first in the series of exploratory posts to analyze Hillary Clinton’s email &lt;a href=&quot;https://www.kaggle.com/kaggle/hillary-clinton-emails/downloads/hillary-clinton-emails-release-2015-09-11-01-39-01.zip&quot;&gt;corpus&lt;/a&gt;. A lot of &lt;a href=&quot;https://www.kaggle.com/kaggle/hillary-clinton-emails/kernels&quot;&gt;work&lt;/a&gt; has already been done in pursuit of gathering insights from this dataset. I will specifically focus on discovering policy standpoints/perceptions pertaining to the Republic of India.&lt;/p&gt;
+
+&lt;p&gt;This specific post is inspired from the work &lt;a href=&quot;https://www.kaggle.com/the1owl/d/kaggle/hillary-clinton-emails/president-2016-nltk/code&quot;&gt;here&lt;/a&gt;. The altered code to generate the below wordcloud image can be obtained from this &lt;a href=&quot;https://fill&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/final.jpg&quot; alt=&quot;HC-India WordCloud&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The above wordcloud in generated in context of emails mentioning &lt;code class=&quot;highlighter-rouge&quot;&gt;India&lt;/code&gt;. You can analyze the full size image &lt;a href=&quot;https://fill&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 05 Sep 2016 01:00:45 -0700</pubDate>
+        <link>http://viishaal.github.io/jekyll/update/2016/09/05/clinton.html</link>
+        <guid isPermaLink="true">http://viishaal.github.io/jekyll/update/2016/09/05/clinton.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
     
       <item>
         <title>Detecting speech similarities</title>
@@ -26,7 +48,7 @@
 
 &lt;p&gt;d) draw cosine similarities with speeches of other personalities&lt;/p&gt;
 
-&lt;p&gt;All of the analysis is done in R. Full code is &lt;a href=&quot;/code/topics.R&quot;&gt;here&lt;/a&gt; and the datasets used are &lt;a href=&quot;/data/SOTU&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;All of the analysis is done in R. Full code is &lt;a href=&quot;https://github.com/viishaal/viishaal.github.io/blob/master/code/topics.R&quot;&gt;here&lt;/a&gt; and the datasets used are &lt;a href=&quot;https://github.com/viishaal/viishaal.github.io/tree/master/data/SOTU&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Read SOTU data:&lt;/p&gt;
 
