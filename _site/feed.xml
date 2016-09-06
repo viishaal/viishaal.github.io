@@ -6,8 +6,8 @@
 </description>
     <link>http://viishaal.github.io/</link>
     <atom:link href="http://viishaal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 06 Sep 2016 15:26:29 -0700</pubDate>
-    <lastBuildDate>Tue, 06 Sep 2016 15:26:29 -0700</lastBuildDate>
+    <pubDate>Tue, 06 Sep 2016 15:42:10 -0700</pubDate>
+    <lastBuildDate>Tue, 06 Sep 2016 15:42:10 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -18,9 +18,9 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/final.jpg&quot; alt=&quot;HC-India WordCloud&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The above wordcloud in generated in context of emails mentioning &lt;code class=&quot;highlighter-rouge&quot;&gt;India&lt;/code&gt;. You can analyze the full size image &lt;a href=&quot;https://raw.githubusercontent.com/viishaal/viishaal.github.io/master/images/final.jpg&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The above wordcloud in generated from sample of emails mentioning &lt;code class=&quot;highlighter-rouge&quot;&gt;India&lt;/code&gt;. You can analyze the full size image &lt;a href=&quot;https://raw.githubusercontent.com/viishaal/viishaal.github.io/master/images/final.jpg&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;I the next post I will try to figure out which countries are mentioned in context with India probably through a graph visualization.&lt;/p&gt;
+&lt;p&gt;In the next post I will try to figure out which countries are mentioned most frequently when discussing India (probably a graph visualization).&lt;/p&gt;
 
 </description>
         <pubDate>Mon, 05 Sep 2016 01:00:45 -0700</pubDate>
