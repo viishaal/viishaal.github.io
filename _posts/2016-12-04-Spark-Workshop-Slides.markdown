@@ -17,4 +17,4 @@ Slides for this session are available on this [link][slides].
 
 
 [workbook]: https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/5927674588242461/2899988031319565/3132132669996186/latest.html
-[slides]: https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/5927674588242461/2899988031319565/3132132669996186/latest.html
+[slides]: https://github.com/viishaal/viishaal.github.io/blob/master/slides/Spark%20basics%20with%20Data%20Bricks.pdf
