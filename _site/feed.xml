@@ -6,9 +6,28 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 04 Dec 2016 22:17:33 -0500</pubDate>
-    <lastBuildDate>Sun, 04 Dec 2016 22:17:33 -0500</lastBuildDate>
+    <pubDate>Sun, 12 Feb 2017 16:39:30 -0500</pubDate>
+    <lastBuildDate>Sun, 12 Feb 2017 16:39:30 -0500</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>MLB Hackathon</title>
+        <description>&lt;p&gt;For this one day hackathon at NYC Medialabs, we conceptualised and prototyped a virtual reality-based product that would allow for more immersive user experience in content browsing and ingestion. This was our dig at thinking through the VR search interface of the future. 
+Taking the top down approach we thought about problems in storing/indexing and retrieving large amount of multi-modal data and then analysed capabilities of VR representations that could lead to potential solutions for this problems.&lt;/p&gt;
+
+&lt;p&gt;Working with VR technology stack for the first time; we imported Assets from Sketchup into Unity for our final demo. The slides with link to the demo is &lt;a href=&quot;https://docs.google.com/presentation/d/164j3aTwNupAoULiz2igQafaPEzS6aK3RG26VUmHWCzo/edit?ts=589fade1#slide=id.g1b0e269fd6_0_217&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 12 Feb 2017 15:18:05 -0500</pubDate>
+        <link>http://localhost:4000/jekyll/update/2017/02/12/MLB-Hack.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/update/2017/02/12/MLB-Hack.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
     
       <item>
         <title>Spark Workshop</title>

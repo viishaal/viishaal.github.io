@@ -1,0 +1,146 @@
+<p>Disclaimer: In this post I am comparing State of the Union (SOTU) addresses with speeches of Hitler, Gandhi and the recently elected Canadian president Justin Trudeau. This is a surface level textual analysis and I am not drawing any personality based comparisons in this post.</p>
+
+<p>This exploratory analysis compares SOTU addresses given by presidents over the years with speeches of other famous/in-famous personalities. Although the overall idea of this and future analysis is to draw comparisons in both speech content and styles; the current analysis is restricted to term frequency based cosine similarity measures. A deeper content analysis will probably require parsing, identifying topics/policies etc. Associating sentiment with those topics could be a dummy/indicator for policy standpoints. Speech style comparisons will require analysis of speech signals and prosody data.</p>
+
+<p>We will do the following:</p>
+
+<p>a) parse the SOTU speech dataset</p>
+
+<p>b) obtain term document frequency matrix</p>
+
+<p>c) remove sparse features</p>
+
+<p>d) draw cosine similarities with speeches of other personalities</p>
+
+<p>All of the analysis is done in R. Full code is <a href="https://github.com/viishaal/viishaal.github.io/blob/master/code/topics.R">here</a> and the datasets used are <a href="https://github.com/viishaal/viishaal.github.io/tree/master/data/SOTU">here</a>.</p>
+
+<p>Read SOTU data:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span><span class="p">(</span><span class="s1">'ggplot2'</span><span class="p">)</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">'tm'</span><span class="p">)</span>
+
+<span class="n">mypwd</span> <span class="o">=</span> <span class="s2">"set path to the datasets ... "</span>
+
+<span class="n">docs</span> <span class="o">=</span> <span class="no">Corpus</span><span class="p">(</span><span class="no">DirSource</span><span class="p">(</span><span class="n">mypwd</span><span class="p">))</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="no">Corpus</span><span class="p">(</span><span class="no">VectorSource</span><span class="p">(</span><span class="n">strsplit</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="n">docs</span><span class="p">[[</span><span class="mi">1</span><span class="p">]]</span><span class="vg">$content</span><span class="p">,</span><span class="n">collapse</span><span class="o">=</span><span class="s1">'\n'</span><span class="p">),</span><span class="s2">"***"</span><span class="p">,</span><span class="n">fixed</span><span class="o">=</span><span class="no">TRUE</span><span class="p">)[[</span><span class="mi">1</span><span class="p">]]))</span></code></pre></figure>
+
+<p>Parse meta information at top of the document. Combine president name and speech year.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">speeches</span> <span class="o">=</span> <span class="n">docs</span><span class="p">[[</span><span class="mi">1</span><span class="p">]]</span><span class="vg">$content</span>
+<span class="n">speeches</span> <span class="o">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">speeches</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">speeches</span> <span class="o">=</span> <span class="n">speeches</span><span class="p">[[</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">speeches</span> <span class="o">=</span> <span class="n">speeches</span><span class="p">[</span><span class="n">speeches!</span><span class="o">=</span><span class="s2">""</span><span class="p">]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="nf">frame</span><span class="p">(</span><span class="n">speeches</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="nf">frame</span><span class="p">(</span><span class="k">do</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="s1">'rbind'</span><span class="p">,</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">as</span><span class="p">.</span><span class="nf">character</span><span class="p">(</span><span class="n">df</span><span class="vg">$speeches</span><span class="p">),</span> <span class="s2">","</span> <span class="p">,</span><span class="n">fixed</span><span class="o">=</span><span class="no">TRUE</span><span class="p">)))</span>
+
+<span class="n">colnames</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">"president"</span><span class="p">,</span><span class="s2">"speech"</span><span class="p">,</span><span class="s2">"month"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">)</span>
+
+<span class="c1"># returns string w/o leading or trailing whitespace</span>
+<span class="n">trim</span> <span class="o">=</span> <span class="n">function</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nb">gsub</span><span class="p">(</span><span class="s2">"^</span><span class="se">\\</span><span class="s2">s+|</span><span class="se">\\</span><span class="s2">s+$"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">apply</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">trim</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,]</span>
+
+<span class="n">ident</span> <span class="o">=</span> <span class="n">paste</span><span class="p">(</span><span class="n">df</span><span class="p">[,</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">[,</span><span class="mi">4</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"_"</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">cbind</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">ident</span><span class="p">)</span></code></pre></figure>
+
+<p>Remove the meta doc and clean the remaining corpus (stemming, stop word removal etc.)</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">docs</span> <span class="o">=</span> <span class="n">docs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">clean_docs</span><span class="o">=</span><span class="n">function</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">docs</span> <span class="o">=</span> <span class="n">tm_map</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">content_transformer</span><span class="p">(</span><span class="n">tolower</span><span class="p">))</span>
+  <span class="n">docs</span> <span class="o">=</span> <span class="n">tm_map</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">removeNumbers</span><span class="p">)</span>
+  <span class="n">docs</span> <span class="o">=</span> <span class="n">tm_map</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">removePunctuation</span><span class="p">)</span>
+  <span class="n">docs</span> <span class="o">=</span> <span class="n">tm_map</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">removeWords</span><span class="p">,</span> <span class="n">stopwords</span><span class="p">(</span><span class="s2">"english"</span><span class="p">))</span>
+  <span class="n">docs</span> <span class="o">=</span> <span class="n">tm_map</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">stemDocument</span><span class="p">)</span>
+  <span class="n">docs</span> <span class="o">=</span> <span class="n">tm_map</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">stripWhitespace</span><span class="p">)</span>
+  <span class="n">docs</span> <span class="o">=</span> <span class="n">tm_map</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="no">PlainTextDocument</span><span class="p">)</span>
+  <span class="n">docs</span>
+<span class="p">}</span>
+
+<span class="n">docs</span> <span class="o">=</span> <span class="n">clean_docs</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span></code></pre></figure>
+
+<h3>Comparing speeches</h3>
+
+<p>The following R code reads in the speeches of the personality with which the comparison is drawn. It concatenates the read-in corpus with the previously built corpus and calculates cosine similarities with each years address. Finally highest 10 matches are picked and actual similarity measures are plotted.</p>
+
+<p>Put the speeches of a famous personality in the directory “dir_name” as a text document and enter the name of the personality as “pname”.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">compare_speeches</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="n">pname</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">hitd</span> <span class="o">=</span> <span class="n">paste</span><span class="p">(</span><span class="s2">"path to data directory here ..."</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"/"</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">hitd</span><span class="p">)</span>
+  
+  <span class="n">hdocs</span> <span class="o">=</span> <span class="no">Corpus</span><span class="p">(</span><span class="no">DirSource</span><span class="p">(</span><span class="n">hitd</span><span class="p">))</span>
+  <span class="n">hdocs</span> <span class="o">=</span> <span class="no">Corpus</span><span class="p">(</span><span class="no">VectorSource</span><span class="p">(</span><span class="n">strsplit</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="n">hdocs</span><span class="p">[[</span><span class="mi">1</span><span class="p">]]</span><span class="vg">$content</span><span class="p">,</span><span class="n">collapse</span><span class="o">=</span><span class="s1">'\n'</span><span class="p">),</span><span class="s2">"***"</span><span class="p">,</span><span class="n">fixed</span><span class="o">=</span><span class="no">TRUE</span><span class="p">)[[</span><span class="mi">1</span><span class="p">]]))</span>
+  
+  <span class="n">hdocs</span> <span class="o">=</span> <span class="n">clean_docs</span><span class="p">(</span><span class="n">hdocs</span><span class="p">)</span>
+  
+  <span class="n">combined</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">hdocs</span><span class="p">)</span>
+  <span class="n">sp</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="n">df</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">pname</span><span class="p">)</span>
+  <span class="n">names</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span> <span class="o">=</span> <span class="n">sp</span>
+  
+  
+  <span class="n">htdm</span> <span class="o">=</span> <span class="no">TermDocumentMatrix</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span>
+  <span class="n">htdmss</span> <span class="o">=</span> <span class="n">removeSparseTerms</span><span class="p">(</span><span class="n">htdm</span><span class="p">,</span> <span class="mi">0</span><span class="o">.</span><span class="mi">75</span><span class="p">)</span>
+  <span class="n">htdmss</span><span class="vg">$dimnames</span>
+  
+  <span class="n">m</span> <span class="o">=</span> <span class="n">as</span><span class="p">.</span><span class="nf">matrix</span><span class="p">(</span><span class="n">htdmss</span><span class="p">)</span>
+  
+  <span class="n">m</span> <span class="o">=</span> <span class="n">m</span><span class="p">[,</span><span class="mi">180</span><span class="p">:</span><span class="mi">225</span><span class="p">]</span>
+
+  <span class="n">cos</span><span class="p">.</span><span class="nf">sim</span><span class="o">=</span><span class="n">function</span><span class="p">(</span><span class="n">ma</span><span class="p">,</span> <span class="n">mb</span><span class="p">){</span>
+	  <span class="n">mat</span><span class="o">=</span><span class="n">tcrossprod</span><span class="p">(</span><span class="n">ma</span><span class="p">,</span> <span class="n">mb</span><span class="p">)</span>
+	  <span class="n">t1</span><span class="o">=</span><span class="n">sqrt</span><span class="p">(</span><span class="n">apply</span><span class="p">(</span><span class="n">ma</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">crossprod</span><span class="p">))</span>
+	  <span class="n">t2</span><span class="o">=</span><span class="n">sqrt</span><span class="p">(</span><span class="n">apply</span><span class="p">(</span><span class="n">mb</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">crossprod</span><span class="p">))</span>
+	  <span class="n">mat</span> <span class="o">/</span> <span class="n">outer</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">cos</span><span class="p">.</span><span class="nf">sim</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">t</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+
+  <span class="n">scores</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">46</span><span class="p">,]</span>
+  <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="n">order</span><span class="p">(</span><span class="n">scores</span><span class="p">)]</span>
+  <span class="n">scores</span>
+  
+  <span class="n">plot</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+  
+  <span class="n">out</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="nf">frame</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">names</span><span class="p">(</span><span class="n">scores</span><span class="p">),</span> <span class="n">scores</span><span class="p">))</span>
+  <span class="n">out</span><span class="vg">$scores</span> <span class="o">=</span> <span class="n">as</span><span class="p">.</span><span class="nf">numeric</span><span class="p">(</span><span class="n">as</span><span class="p">.</span><span class="nf">character</span><span class="p">(</span><span class="n">out</span><span class="vg">$scores</span><span class="p">))</span>
+  <span class="n">o</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">36</span><span class="p">:</span><span class="mi">46</span><span class="p">,]</span>
+  <span class="n">ggplot</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="o">+</span> 
+    <span class="n">geom_bar</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">reorder</span><span class="p">(</span><span class="no">V1</span><span class="p">,</span> <span class="o">-</span><span class="n">scores</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">scores</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">),</span> <span class="n">stat</span><span class="o">=</span><span class="s2">"identity"</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">theme</span><span class="p">(</span><span class="n">axis</span><span class="p">.</span><span class="nf">text</span><span class="p">.</span><span class="nf">x</span> <span class="o">=</span> <span class="n">element_text</span><span class="p">(</span><span class="n">angle</span> <span class="o">=</span> <span class="mi">90</span><span class="p">,</span> <span class="n">hjust</span> <span class="o">=</span> <span class="mi">1</span><span class="p">))</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3>Comparing with Hitler</h3>
+<p>The directory “hitler” in the data folder has the translated version of Hitler’s speeches over the years: starting from his ascendency to the highest office; to his speeches during the world war.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">compare_speeches</span><span class="p">(</span><span class="s2">"hitler"</span><span class="p">,</span> <span class="s2">"Adolf Hitler"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/images/hitler.png" alt="Adolf Hitler" /></p>
+
+<p>The above graph shows top 10 most similar speeches with those of Hitler’s. As a sanity check Hitler’s speech has a cosine similarity measure of 1 (completely identical) with his own speeches.</p>
+
+<p>We find that most matching speeches were made during war periods e.g. Nixon’s address in 1972 during the Vietnam war, George W. Bush’s speeches in 2003 and 2005 during Afghanistan invasion, George H.W. Bush’s speech in 1991 was again made during the turmoil period in Afghanistan.</p>
+
+<h3>Comparing with Gandhi</h3>
+<p>I took Gandhi’s speeches during freedom struggle and after independence and compared them with other presidents.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">compare_speeches</span><span class="p">(</span><span class="s2">"gandhi"</span><span class="p">,</span> <span class="s2">"Mahatma Gandhi"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/images/gandhi.png" alt="Mahatma Gandhi" /></p>
+
+<p>First thing we note is that general similarity measure is very small compared to similarity with Hitler’s speeches (~ 0.30). From the above plot we find that as in Hitler’s case Gandhi’s speeches are similar to George W. Bush, George H.W. Bush’s speeches as well. Barrack Obama also figures in the top 5.</p>
+
+<p>The conjecture is that although Bush and Gandhi might both be talking about war, post-war situations and effects of war; their sentiment towards the topics could be different. The similarity measure takes into account only frequency of occurance of words. This means that even though Gandhi and Bush might be talking about the same topics we would not know if there sentiment and opinions about the topics differ.</p>
+
+<h3>Comparing with Justin Trudeau</h3>
+<p>We further took recently elected Canadian president’s address to the nation. Justin Trudeau has been applauded for choosing a very diverse, secular and representative cabinet. His address was seen as being progressive and discussed roadmap for advancing Canada on frontiers of technology and innovation.</p>
+
+<p>Justin Trudeau’s speech seem to be similar in spirit with Barrack Obama’s addresses to the nation.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">compare_speeches</span><span class="p">(</span><span class="s2">"jt"</span><span class="p">,</span> <span class="s2">"Justin Trudeau"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/images/jt.png" alt="Justin Trudeau" /></p>
+
+<p>PS: Please contact me if anyone is interested in taking this analysis further!!</p>
+
