@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 07 Mar 2017 18:01:16 -0500</pubDate>
-    <lastBuildDate>Tue, 07 Mar 2017 18:01:16 -0500</lastBuildDate>
+    <pubDate>Tue, 07 Mar 2017 18:33:19 -0500</pubDate>
+    <lastBuildDate>Tue, 07 Mar 2017 18:33:19 -0500</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -22,6 +22,26 @@
         <pubDate>Tue, 07 Mar 2017 16:38:05 -0500</pubDate>
         <link>http://localhost:4000/jekyll/update/2017/03/07/Hack_at_UN.html</link>
         <guid isPermaLink="true">http://localhost:4000/jekyll/update/2017/03/07/Hack_at_UN.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Programming Workshop</title>
+        <description>&lt;p&gt;We recently began an initiative to impart non-technical people at International House (my residence and a place close to my heart!) some programming skills. The effort was based on a few conversations that I had with people coming from the field of journalism, social sciences etc and who had never used any other data analytics tool except Excel/Tableau etc and who really felt the need to acquire basic programming skills but feared the notions/concepts of programming (another reason why I feel that basic programming should be made a mandatory part of the curriculum in education).&lt;/p&gt;
+
+&lt;p&gt;We began this initiative at I-House to impart basic data literacy skills in Python and R through a series of workshops. Slides from the first workshop are &lt;a href=&quot;https://docs.google.com/presentation/d/1y_u2Dja1mr3HENo49IFwoFRIV4srBwMmLlTAKvyWyv4/edit#slide=id.p&quot;&gt;here&lt;/a&gt;. Basic programming constructs/paradigms (variables, functions, loops etc) were taught to the students which they had to apply in a data analytics &lt;a href=&quot;https://docs.google.com/document/d/1PXGDdpvKe_RkgGDNhxZ7OsXOA2uzDJoodzNYIxwhyjE/edit&quot;&gt;exercise&lt;/a&gt; at the end. Online repl provided by &lt;a href=&quot;https://repl.it/&quot;&gt;http://repl.it&lt;/a&gt; was used to save efforts in installation, setting the environment etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ihouse.jpeg&quot; alt=&quot;programming_workshop&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 01 Mar 2017 19:00:05 -0500</pubDate>
+        <link>http://localhost:4000/jekyll/update/2017/03/01/programming_workshop.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/update/2017/03/01/programming_workshop.html</guid>
         
         
         <category>jekyll</category>
