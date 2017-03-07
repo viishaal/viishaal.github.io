@@ -5,6 +5,8 @@ date:   2016-12-04 20:00:05 -0400
 categories: jekyll update
 ---
 
+![workshop](/images/spark.jpg)
+
 I recently conducted a Spark workshop at Columbia University with focus on the following items:
 
 - introduction to the capabilities of Spark

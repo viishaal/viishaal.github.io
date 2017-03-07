@@ -6,9 +6,29 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Feb 2017 16:39:30 -0500</pubDate>
-    <lastBuildDate>Sun, 12 Feb 2017 16:39:30 -0500</lastBuildDate>
+    <pubDate>Tue, 07 Mar 2017 18:01:16 -0500</pubDate>
+    <lastBuildDate>Tue, 07 Mar 2017 18:01:16 -0500</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Hack at United Nations</title>
+        <description>&lt;p&gt;Our concept/prototype at the Blockchain SDG Hackathon was awarded the second position. The prototype is designed for using blockchain technology and data analytics to improve water quality/water treatment services for women in Brazil.&lt;/p&gt;
+
+&lt;p&gt;The slides from the presentation are &lt;a href=&quot;https://github.com/viishaal/viishaal.github.io/blob/master/slides/aguadados%20presentation.pdf&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/team_pic.jpg&quot; alt=&quot;the_team&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 07 Mar 2017 16:38:05 -0500</pubDate>
+        <link>http://localhost:4000/jekyll/update/2017/03/07/Hack_at_UN.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/update/2017/03/07/Hack_at_UN.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
     
       <item>
         <title>MLB Hackathon</title>
@@ -16,6 +36,8 @@
 Taking the top down approach we thought about problems in storing/indexing and retrieving large amount of multi-modal data and then analysed capabilities of VR representations that could lead to potential solutions for this problems.&lt;/p&gt;
 
 &lt;p&gt;Working with VR technology stack for the first time; we imported Assets from Sketchup into Unity for our final demo. The slides with link to the demo is &lt;a href=&quot;https://docs.google.com/presentation/d/164j3aTwNupAoULiz2igQafaPEzS6aK3RG26VUmHWCzo/edit?ts=589fade1#slide=id.g1b0e269fd6_0_217&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/mlb.jpg&quot; alt=&quot;presenting&quot; /&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 12 Feb 2017 15:18:05 -0500</pubDate>
@@ -31,7 +53,9 @@ Taking the top down approach we thought about problems in storing/indexing and r
     
       <item>
         <title>Spark Workshop</title>
-        <description>&lt;p&gt;I recently conducted a Spark workshop at Columbia University with focus on the following items:&lt;/p&gt;
+        <description>&lt;p&gt;&lt;img src=&quot;/images/spark.jpg&quot; alt=&quot;workshop&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I recently conducted a Spark workshop at Columbia University with focus on the following items:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;introduction to the capabilities of Spark&lt;/li&gt;

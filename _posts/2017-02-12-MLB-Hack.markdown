@@ -10,5 +10,6 @@ Taking the top down approach we thought about problems in storing/indexing and r
 
 Working with VR technology stack for the first time; we imported Assets from Sketchup into Unity for our final demo. The slides with link to the demo is [here][slides].
 
+![presenting](/images/mlb.jpg)
 
 [slides]: https://docs.google.com/presentation/d/164j3aTwNupAoULiz2igQafaPEzS6aK3RG26VUmHWCzo/edit?ts=589fade1#slide=id.g1b0e269fd6_0_217

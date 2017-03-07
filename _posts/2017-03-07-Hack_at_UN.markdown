@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "Hack at United Nations"
+date:   2017-03-07 17:38:05 -0400
+categories: jekyll update
+---
+
+Our concept/prototype at the Blockchain SDG Hackathon was awarded the second position. The prototype is designed for using blockchain technology and data analytics to improve water quality/water treatment services for women in Brazil. 
+
+
+The slides from the presentation are [here][slides].
+
+
+![the_team](/images/team_pic.jpg)
+
+[slides]: https://github.com/viishaal/viishaal.github.io/blob/master/slides/aguadados%20presentation.pdf
